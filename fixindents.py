@@ -16,7 +16,7 @@ def convert_indents(in_filename, out_filename, in_tabs, in_size, out_tabs, out_s
     out_indent = '\t' if out_tabs else (' ' * out_size)
     out_file = None if debug else open(out_filename, 'w')
     if not debug:
-        print "[*] Converting %s" % in_filename
+        print("[*] Converting %s" % in_filename)
     with open(in_filename) as in_file:
         for line in in_file:
             char_count = 0
@@ -28,7 +28,7 @@ def convert_indents(in_filename, out_filename, in_tabs, in_size, out_tabs, out_s
             indent_count = char_count if in_tabs else (char_count / in_size)
             line = (out_indent * indent_count) + line[char_count:]
             if debug:
-                print line.rstrip()
+                print(line.rstrip())
             else:
                 out_file.write(line)
     if not debug:
@@ -36,15 +36,15 @@ def convert_indents(in_filename, out_filename, in_tabs, in_size, out_tabs, out_s
 
 
 def overwrite_file(path):
-    print "[!] File already exists: %s" % path
-    print "    Overwrite? [y/N] ",
-    resp = raw_input().lower()
+    print("[!] File already exists: %s" % path)
+    print("    Overwrite? [y/N] ", end=' ')
+    resp = input().lower()
     if resp == 'y':
         return True
     elif resp in ('', 'n'):
         return False
     else:
-        print '[!] Invalid answer, aborting'
+        print('[!] Invalid answer, aborting')
         sys.exit(0)
 
 
